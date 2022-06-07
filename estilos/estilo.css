@@ -1,0 +1,16 @@
+.fakeimg {
+    height: 200px;
+    background: #aaa;
+}
+
+#buscador {
+    background-image: url('../imagen/searchicon.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 100px solid #ddd;
+    margin-bottom: 12px;
+    border-radius: 400px;
+  }
