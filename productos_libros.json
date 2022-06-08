@@ -26,7 +26,7 @@
             "in_stock": true,
             "cantidad": 10,
             "rating": 4,
-            "imagen": "img/lavuelta.jpg",
+            "imagen": "imagen/lavuelta.jpg",
             "instock": true
         },{
             "prod_id": "2",
@@ -37,7 +37,7 @@
             "in_stock": true,
             "cantidad": 11,
             "rating": 5,
-            "imagen": "img/amorentiempos.jpg",
+            "imagen": "imagen/amorentiempos.jpg",
             "instock": true
         },
         {
@@ -49,7 +49,7 @@
             "in_stock": true,
             "cantidad": 8,
             "rating": 3,
-            "imagen": "img/animales.jpeg",
+            "imagen": "imagen/animales.jpg",
             "instock": true
         },
 
@@ -62,7 +62,7 @@
             "in_stock": true,
             "cantidad": 5,
             "rating": 2,
-            "imagen": "img/yorobot.jpg",
+            "imagen": "imagen/yorobot.jpg",
             "instock": true
         },
 
@@ -75,7 +75,7 @@
             "in_stock": true,
             "cantidad": 15,
             "rating": 1,
-            "imagen": "img/juegos.jpg",
+            "imagen": "imagen/juegos.jpg",
             "instock": true
         }
     ]

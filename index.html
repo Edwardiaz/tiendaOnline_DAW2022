@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="tiendaOnline_DAW2022">
 
 <head>
     <meta charset="UTF-8">
@@ -21,7 +21,7 @@
 
 </head>
 
-<body>
+<body ng-controller="renderData">
 
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
         <a class="navbar-brand" href="#">Mi Tienda</a>
@@ -39,7 +39,7 @@
     <div class="jumbotron text-center" style="margin-bottom:0">
         
         <div id="slider" class="carousel slide" data-ride="carousel">
-                    
+            
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
               <div class="item active">
@@ -56,11 +56,11 @@
             </div>
         
             <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <a class="left carousel-control" href="#slider" data-slide="prev">
               <span class="glyphicon glyphicon-chevron-left"></span>
               <span class="sr-only">Anterior</span>
             </a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <a class="right carousel-control" href="#slider" data-slide="next">
               <span class="glyphicon glyphicon-chevron-right"></span>
               <span class="sr-only">Siguiente</span>
             </a>
@@ -90,73 +90,69 @@
             </div>
         </div>
         <div class="row">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <a href="/w3images/lights.jpg" target="_blank">
-                        <img src="/w3images/lights.jpg" alt="Lights" style="width:100%">
-                        <div class="caption">
-                            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                        </div>
-                        </a>
+            <div class="col-md-4" ng-repeat="libro in Libros.productos">
+                <div class="thumbnail">
+                    <a href="{{libro.imagen}}" target="_blank">
+                    <img src="{{libro.imagen}}" alt="Lights" style="width:100%">
+                    <div class="caption">
+                        <p>{{libro.descripcion}}</p>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <a href="/w3images/nature.jpg" target="_blank">
-                        <img src="/w3images/nature.jpg" alt="Nature" style="width:100%">
-                        <div class="caption">
-                            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                        </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <a href="/w3images/fjords.jpg" target="_blank">
-                        <img src="/w3images/fjords.jpg" alt="Fjords" style="width:100%">
-                        <div class="caption">
-                            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                        </div>
-                        </a>
-                    </div>
+                    </a>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <a href="/w3images/lights.jpg" target="_blank">
-                        <img src="/w3images/lights.jpg" alt="Lights" style="width:100%">
-                        <div class="caption">
-                            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                        </div>
-                        </a>
+            <!-- <div class="col-md-4">
+                <div class="thumbnail">
+                    <a href="/w3images/nature.jpg" target="_blank">
+                    <img src="/w3images/nature.jpg" alt="Nature" style="width:100%">
+                    <div class="caption">
+                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <a href="/w3images/nature.jpg" target="_blank">
-                        <img src="/w3images/nature.jpg" alt="Nature" style="width:100%">
-                        <div class="caption">
-                            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                        </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <a href="/w3images/fjords.jpg" target="_blank">
-                        <img src="/w3images/fjords.jpg" alt="Fjords" style="width:100%">
-                        <div class="caption">
-                            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                        </div>
-                        </a>
-                    </div>
+                    </a>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <a href="/w3images/fjords.jpg" target="_blank">
+                    <img src="/w3images/fjords.jpg" alt="Fjords" style="width:100%">
+                    <div class="caption">
+                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                    </div>
+                    </a>
+                </div>
+            </div> -->
         </div>
+        <!-- <div class="row">
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <a href="/w3images/lights.jpg" target="_blank">
+                    <img src="/w3images/lights.jpg" alt="Lights" style="width:100%">
+                    <div class="caption">
+                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <a href="/w3images/nature.jpg" target="_blank">
+                    <img src="/w3images/nature.jpg" alt="Nature" style="width:100%">
+                    <div class="caption">
+                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <a href="/w3images/fjords.jpg" target="_blank">
+                    <img src="/w3images/fjords.jpg" alt="Fjords" style="width:100%">
+                    <div class="caption">
+                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div> -->
     </div>
 
     <div class="jumbotron text-center" style="margin-bottom:0">
