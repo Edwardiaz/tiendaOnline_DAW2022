@@ -14,3 +14,7 @@
     margin-bottom: 12px;
     border-radius: 10px;
   }
+
+.modal-body {
+    text-align: justify;
+}
