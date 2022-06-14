@@ -14,6 +14,10 @@
         {
             "cat_id": "4",
             "cat_nombre": "Ciencia Ficción"
+        },
+        {
+            "cat_id": "5",
+            "cat_nombre": "Recuentos de la vida"
         }
     ],
     "productos": [
@@ -70,12 +74,24 @@
             "prod_id": "5",
             "cat_id": "4",
             "nombre": "Los juegos de Ender",
-            "precio": 54.99,
+            "precio": 59.99,
             "descripcion": "En el año 2070 la humanidad está en guerra con una raza extraterrestre conocida como los insectores (su nombre proviene del parecido que tienen a los insectos). ... Pero han pasado décadas, y la humanidad se enfrenta a un futuro incierto esperando el exterminio por una posible tercera invasión por los extraterrestres.",
             "in_stock": true,
             "cantidad": 15,
             "rating": 1,
             "imagen": "imagen/juegos.jpg",
+            "instock": true
+        },
+        {
+            "prod_id": "6",
+            "cat_id": "4",
+            "nombre": "Star Wars: La Trilogía Consecuencias",
+            "precio": 39.99,
+            "descripcion": "La Trilogía Consecuencias es una trilogía de novelas escritas por el autor Chuck Wendig. La trilogía se comenzó a publicar en 2015 con Consecuencias y cuenta la historia de los eventos que tuvieron lugar tras El retorno del Jedi y antes del Despertar de la fuerza. Si eres un fan de la saga Star Wars, no te puedes perder esta gran trilogía que detalla la historia de este universo y sus personajes.",
+            "in_stock": true,
+            "cantidad": 15,
+            "rating": 1,
+            "imagen": "imagen/Aftermath.jpg",
             "instock": true
         }
     ]
