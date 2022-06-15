@@ -18,3 +18,7 @@
     margin-bottom: 12px;
     border-radius: 10px;
   }
+
+.table th{
+    text-align: center;
+}

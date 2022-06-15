@@ -111,10 +111,21 @@
                 
                 <div class="modal-body">
                     Modal carrito de compra
-                    {{producto}}
-                    {{precio}}
-                    {{cantidad}}
-                    {{precio}}<!-- {{subTotal}} es subtotal pero es lo mismo que precio, opcional hacer nueva var-->
+                     <table class="table table-bordered">
+                         <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Total</th>
+                         </tr>
+                         <tr>
+                             <th>{{producto}}</th>
+                             <th>{{precio}}</th>
+                             <th>{{cantidad}}</th>
+                             <th>{{precio}}</th>
+                         </tr>
+                    </table>
+                 <!-- {{subTotal}} es subtotal pero es lo mismo que precio, opcional hacer nueva var-->
                 </div>
                 
                 <div class="modal-footer">
