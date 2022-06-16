@@ -22,3 +22,11 @@
 .table th{
     text-align: center;
 }
+
+#detalle {
+    text-align: center;
+}
+
+div [class="modal-footer"]{
+    align-self: center
+}
