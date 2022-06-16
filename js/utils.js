@@ -20,7 +20,7 @@ app.controller("renderData", function ($scope, $http) {
         }
     });
 
-    $scope.carrito = [];
+  $scope.carrito = [];
   
   var buscarLibroById = function(libros, id) {
     return _.find(libros, function(libro) {

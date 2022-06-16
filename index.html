@@ -23,15 +23,15 @@
 <body ng-controller="renderData">
 
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
-        <a class="navbar-brand" href="#">Mi Tienda</a>
+        <a class="navbar-brand" href="#">Libreria </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             
         </div>
-        <a href="#">
-            <span class="glyphicon glyphicon-shopping-cart" ng-click="carrito" data-toggle="modal" data-target="#carrito">{{ total() | currency }}</span>
+        <a href="#"> 
+            <span class="glyphicon glyphicon-shopping-cart" data-toggle="modal" data-target="#carrito">{{ total() | currency }}</span>
         </a>
     </nav>
 
@@ -77,7 +77,6 @@
             </div>
             <div class="col-sm-3">
                 <select id="buscador" ng-model="buscarCat" ng-options="cat.cat_nombre for cat in Libros.categorias">
-                    <!-- <option ng-repeat="cat in Libros.categorias" value="{{cat.cat_id}}">{{cat.cat_nombre}}</option> -->
                 </select>
             </div>
         </div>
@@ -110,26 +109,40 @@
                 </div>
                 
                 <div class="modal-body">
-                    Modal carrito de compra
+                    Carrito de compra
                      <table class="table table-bordered">
                          <tr>
-                            <th>Producto</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Total</th>
+                            <th>PRODUCTO</th>
+                            <th>PRECIO</th>
+                            <th>CANTIDAD</th>
+                            <th>SUB TOTAL</th>
                          </tr>
-                         <tr>
-                             <th>{{producto}}</th>
-                             <th>{{precio}}</th>
-                             <th>{{cantidad}}</th>
-                             <th>{{precio}}</th>
+                         <tr ng-repeat="libro in carrito | filter:buscarCat | orderBy: 'nombre' ">
+                             <th>{{libro.nombre}}</th>
+                             <th>{{libro.precio}}</th>
+                             <th>{{libro.cantidad}}</th>
+                             <th>{{(costo(libro) | currency)}}</th>
                          </tr>
                     </table>
-                 <!-- {{subTotal}} es subtotal pero es lo mismo que precio, opcional hacer nueva var-->
                 </div>
                 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" >CERRAR</button>
+                    <div class="row">
+                        <div class="col-md-11">
+                            
+                        </div>
+                        <div class="col-md-1">
+                            <strong><h4>{{ total() | currency }}</h4></strong>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" >CERRAR</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-dark" data-dismiss="modal" ><span class="glyphicon glyphicon-credit-card"> PAGAR</span></button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
