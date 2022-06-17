@@ -23,7 +23,7 @@
 <body ng-controller="renderData">
 
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
-        <a class="navbar-brand" href="#" style="font-size: 30px"><strong>La Libroteca</strong></a>
+        <a class="navbar-brand" href="#" style="font-size: 50px"><strong>La Libroteca</strong></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsarNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -31,7 +31,7 @@
             
         </div>
         <a href="#">                            
-            <span class="glyphicon glyphicon-shopping-cart" ng-click="validarCompra()">{{ total() | currency }}</span>
+            <span class="glyphicon glyphicon-shopping-cart" ng-click="validarCompra()" style="font-size: 50px">{{ total() | currency }}</span>
         </a>
     </nav>
 
@@ -134,7 +134,7 @@
                             
                         </div>
                         <div class="col-md-1">
-                            <strong><h4>{{ total() | currency }}</h4></strong>
+                            <strong><h4>{{ total() | currency }}</h4></strong><br><br><br>
                         </div>
                     </div>
                     <div class="row">
