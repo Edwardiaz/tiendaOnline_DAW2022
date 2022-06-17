@@ -23,7 +23,7 @@
 <body ng-controller="renderData">
 
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
-        <a class="navbar-brand" href="#">Libreria </a>
+        <a class="navbar-brand" href="#" style="font-size: 30px"><strong>Libreria </a></strong>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -86,8 +86,10 @@
                     <a href="#" data-toggle="modal" data-target="#detalle" ng-click="selectInfo(libro.prod_id)">
                         <img src="{{libro.imagen}}" alt="Lights" style="width:100%">
                         <div class="caption">
-                            <p>{{libro.nombre}}</p>
+                            <p>{{libro.nombre}}     &nbsp${{libro.precio}}</p>
+                            <p>{{libro.descripcion}}</p>
                         </div>
+                        <button>detalles</button>
                     </a>
                 </div>
             </div>

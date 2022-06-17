@@ -21,6 +21,8 @@
 
 .table th{
     text-align: center;
+    display: block;
+    overflow-x: auto;
 }
 
 #detalle {
@@ -29,4 +31,23 @@
 
 div [class="modal-footer"]{
     align-self: center
+}
+
+img {
+    max-width: 75%;
+    max-height: 75%;
+}
+
+.thumbnail{
+    height: 80%;
+    width: 80%;
+}
+
+.caption {
+    width: 100%;
+    height: 100px;
+    font-size: 11pt;
+    overflow: hidden;
+    white-space: pre-line;
+    text-overflow: ellipsis;
 }
