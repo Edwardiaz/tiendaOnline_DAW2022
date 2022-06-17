@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Tienda Online</title>
+    <title>La Libroteca Online</title>
     <link rel="stylesheet" type="text/css" href="estilos/estilo.css"/>
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,15 +23,15 @@
 <body ng-controller="renderData">
 
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
-        <a class="navbar-brand" href="#">Libreria </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <a class="navbar-brand" href="#">La Libroteca</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsarNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <div class="collapse navbar-collapse" id="collapsarNavbar">
             
         </div>
-        <a href="#"> 
-            <span class="glyphicon glyphicon-shopping-cart" data-toggle="modal" data-target="#carrito">{{ total() | currency }}</span>
+        <a href="#">                            
+            <span class="glyphicon glyphicon-shopping-cart" ng-click="validarCompra()">{{ total() | currency }}</span>
         </a>
     </nav>
 
@@ -42,7 +42,7 @@
             <!-- imagenes para el slider -->
             <div class="carousel-inner">
               <div class="item active">
-                <img src="imagen/sagaLibros03.png" alt="Lee regularmente" style="width:100%; height:577px">
+                <img src="imagen/sagaLibros04.png" alt="Lee regularmente" style="width:100%;">
               </div>
         
               <div class="item">
@@ -70,18 +70,19 @@
     <div class="container" style="margin-top:30px">
         <div class="row">
             <div class="col-sm-6">
-                <h4><strong>Libros de la categoría:</strong> Aventura</h4>
+                <h4><strong>Libros de la categoría: </strong>{{buscarCat.cat_nombre}}</h4>
             </div>
             <div class="col-sm-3">
                 <input type="text" id="buscador" ng-model="buscarTitulo" placeholder="Buscador..." title="escriba un titulo o escritor">
             </div>
             <div class="col-sm-3">
                 <select id="buscador" ng-model="buscarCat" ng-options="cat.cat_nombre for cat in Libros.categorias">
+                    <option value>Todos</option>
                 </select>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4" ng-repeat="libro in librosFiltrados = (Libros.productos | filter:buscarTitulo | filter:buscarCat | orderBy: 'nombre' )">
+            <div class="col-md-4" ng-repeat="libro in librosFiltrados = (Libros.productos | filter:buscarTitulo | filter:{cat_id:buscarCat.cat_id || undefined} | orderBy: 'nombre' )">
                 <div class="thumbnail">
                     <a href="#" data-toggle="modal" data-target="#detalle" ng-click="selectInfo(libro.prod_id)">
                         <img src="{{libro.imagen}}" alt="Lights" style="width:100%">
@@ -104,12 +105,11 @@
             <div class="modal-content">
             
                 <div class="modal-header">
-                    <h4 class="modal-title">Modal Heading</h4>
+                    <h4 class="modal-title">Carrito de compra</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 
                 <div class="modal-body">
-                    Carrito de compra
                      <table class="table table-bordered">
                          <tr>
                             <th>PRODUCTO</th>
@@ -117,7 +117,7 @@
                             <th>CANTIDAD</th>
                             <th>SUB TOTAL</th>
                          </tr>
-                         <tr ng-repeat="libro in carrito | filter:buscarCat | orderBy: 'nombre' ">
+                         <tr ng-repeat="libro in carrito | orderBy: 'nombre' ">
                              <th>{{libro.nombre}}</th>
                              <th>{{libro.precio}}</th>
                              <th>{{libro.cantidad}}</th>
@@ -140,7 +140,7 @@
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" >CERRAR</button>
                         </div>
                         <div class="col-md-6">
-                            <button type="button" class="btn btn-dark" data-dismiss="modal" ><span class="glyphicon glyphicon-credit-card"> PAGAR</span></button>
+                            <button type="button" class="btn btn-dark" data-dismiss="modal" data-dismiss="modal" data-toggle="modal" data-target="#confirmarCompra"><span class="glyphicon glyphicon-credit-card"> PAGAR</span></button>
                         </div>
                     </div>
                 </div>
@@ -148,7 +148,7 @@
         </div>
     </div>
 
-    <!-- Modal de cada items -->
+    <!-- Modal de cada libro -->
     <div class="modal fade" id="detalle">
         <div class="modal-dialog modal-sm">
             <div class="modal-content" ng-repeat="libro in Libros.productos" ng-show="libroActual == libro.prod_id">    
@@ -175,7 +175,53 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
-                    <button type="button" class="btn btn-secondary" ng-click="agregarLibro(libro)"><span class="glyphicon glyphicon-shopping-cart">AGREGAR</span></button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="agregarLibro(libro)"><span class="glyphicon glyphicon-shopping-cart">AGREGAR</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal de éxito al pagar, lol-->
+    <div class="modal fade" id="confirmarCompra">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" ng-repeat="libro in Libros.productos" ng-show="libroActual == libro.prod_id">    
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Carrito de compra</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <h4>¡Su compra ha sido un éxito!</h4>
+                    <p> 
+                        En breve se le enviará un correo con la factura de su compra. 
+                            <br/>
+                            <br/>
+                        Vuelva pronto.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="limpiarCarrito()"><span class="glyphicon glyphicon-shopping-cart">CERRAR</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal del carrito cuando no hay libros encargados-->
+    <div class="modal fade" id="carritoVacio">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">  
+                
+                <div class="modal-header">
+                    <h4 class="modal-title">Carrito de compra</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <h5>Su carrito de compra está vacío</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
                 </div>
             </div>
         </div>
