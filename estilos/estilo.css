@@ -1,23 +1,23 @@
 .fakeimg {
-    height: 200px;
-    background: #aaa;
+  height: 200px;
+  background: #aaa;
 }
 
 .checked {
-    color: orange;
-  }
+  color: orange;
+}
 
 #buscador {
-    background-image: url('../imagen/searchicon.png');
-    background-position: 10px 12px;
-    background-repeat: no-repeat;
-    width: 100%;
-    font-size: 16px;
-    padding: 12px 20px 12px 40px;
-    border: 2px solid #ddd;
-    margin-bottom: 12px;
-    border-radius: 10px;
-  }
+  background-image: url('../imagen/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 2px solid #ddd;
+  margin-bottom: 12px;
+  border-radius: 10px;
+}
 
 .table th{
     text-align: center;

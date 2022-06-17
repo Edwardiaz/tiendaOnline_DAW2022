@@ -17,7 +17,7 @@ app.controller("renderData", function ($scope, $http) {
             $scope.libroActual = id;
           }
         }
-        }
+      }
     });
 
   $scope.carrito = [];
@@ -40,37 +40,32 @@ app.controller("renderData", function ($scope, $http) {
     return total;
   };
 
-    $scope.agregarLibro = function(añadirLibro) {
-      var libroEncontrado = buscarLibroById($scope.carrito, añadirLibro.prod_id);
-      if (libroEncontrado) {
-        libroEncontrado.cantidad += añadirLibro.cantidad;
-      }
-      else {
-        $scope.carrito.push(angular.copy(añadirLibro));}
-    };
+  $scope.agregarLibro = function(añadirLibro) {
+    var libroEncontrado = buscarLibroById($scope.carrito, añadirLibro.prod_id);
+    if (libroEncontrado) {
+      libroEncontrado.cantidad += añadirLibro.cantidad;
+    }
+    else {
+      $scope.carrito.push(angular.copy(añadirLibro));}
+  };
+
+  $scope.limpiarCarrito = function() {
+    $scope.carrito.length = 0;
+  };
+
+  $scope.validarCompra = function (form){
+    if($scope.carrito.length==0){
+      $('#carritoVacio').modal({
+        show: true
+      });
+    }
+    else{
+      $('#carrito').modal({
+        show: true
+      });
+    }
+  }
 
  });
-
- //HAY QUE BORRAR ESTO, NO SE USA
-//puro js 
-function identificarCard(id){
-  // var idItem = document.getElementById('idProducto').value
-  // console.log(idItem);
-  
-  //alert("Aqui lo consegui desde el angularJS: "+id)
-  
-  fetch('productos_libros.json').then(response => {
-    return response.json();
-  })
-  // .then(jsondata => console.log(jsondata));
-  .then(jsondata => 
-    // {for(i = 0; i<=jsondata.productos.length; i++){
-      // if(jsondata.productos[i].prod_id == id){
-        (jsondata.productos)
-      // }
-    // }
-  // }
-  );
-}
 
 
