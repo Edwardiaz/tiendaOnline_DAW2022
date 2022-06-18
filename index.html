@@ -31,7 +31,7 @@
             
         </div>
         <a href="#">                            
-            <span class="glyphicon glyphicon-shopping-cart" ng-click="validarCompra()">{{ total() | currency }}</span>
+            <span class="glyphicon glyphicon-shopping-cart" ng-click="validarCompra()" style="font-size: 20px">{{ total() | currency }}</span>
         </a>
     </nav>
 
@@ -67,7 +67,7 @@
 
     </div>
 
-    <div class="container" style="margin-top:30px">
+    <div class="container" style="margin-top:20px">
         <div class="row">
             <div class="col-sm-6">
                 <h4><strong>Libros de la categoría: </strong>{{buscarCat.cat_nombre}}</h4>
@@ -81,23 +81,20 @@
                 </select>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4" ng-repeat="libro in librosFiltrados = (Libros.productos | filter:buscarTitulo | filter:{cat_id:buscarCat.cat_id || undefined} | orderBy: 'nombre' )">
-                <div class="thumbnail">
-                    <a href="#" data-toggle="modal" data-target="#detalle" ng-click="selectInfo(libro.prod_id)">
-                        <img src="{{libro.imagen}}" alt="Lights" style="width:100%">
-                        <div class="caption">
-                            <p>{{libro.nombre}}     &nbsp${{libro.precio}}</p>
-                            <p>{{libro.descripcion}}</p>
-                        </div>
-                        <button>detalles</button>
-                    </a>
+        
+        <div class="card-columns">
+            <div id="card" class="card" ng-repeat="libro in librosFiltrados = (Libros.productos | filter:buscarTitulo | filter:{cat_id:buscarCat.cat_id || undefined} | orderBy: 'nombre' )">
+                <img id="imagenCard" class="card-img-top center-block" src="{{libro.imagen}}" alt="Lights">
+                <div class="card-body">
+                    <h4 class="card-title">{{libro.nombre}} <strong id="precioCard">{{libro.precio | currency}}</strong></h4>
+                    <p id="descripcionCard" class="card-text">{{libro.descripcion}}</p>
+                    <a id="botonDetalle" href="#" class="btn btn-dark" data-toggle="modal" data-target="#detalle" ng-click="selectInfo(libro.prod_id)">DETALLES</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="jumbotron text-center" style="margin-bottom:0">
+    <div class="jumbotron text-center">
         <p>Tienda En linea de venta de libros por Jorge Díaz y Eduardo Matías UDB DAW-2022</p>
     </div>
 
@@ -107,11 +104,11 @@
             <div class="modal-content">
             
                 <div class="modal-header">
-                    <h4 class="modal-title">Carrito de compra</h4>
+                    <h2 class="modal-title"><strong> Carrito de compra </strong></h2>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 
-                <div class="modal-body">
+                <div id="tablaCarrito" class="modal-body">
                      <table class="table table-bordered">
                          <tr>
                             <th>PRODUCTO</th>
@@ -127,23 +124,15 @@
                          </tr>
                     </table>
                 </div>
-                
-                <div class="modal-footer">
-                    <div class="row">
-                        <div class="col-md-11">
-                            
-                        </div>
-                        <div class="col-md-1">
-                            <strong><h4>{{ total() | currency }}</h4></strong>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" >CERRAR</button>
-                        </div>
-                        <div class="col-md-6">
-                            <button type="button" class="btn btn-dark" data-dismiss="modal" data-dismiss="modal" data-toggle="modal" data-target="#confirmarCompra"><span class="glyphicon glyphicon-credit-card"> PAGAR</span></button>
-                        </div>
+
+                        <h4><strong id="totalEnCarrito">Total: {{ total() | currency }}</strong></h4>
+
+                <div class="row">
+                    
+                    <!-- <div class="row"> -->
+                    <div class="col-md-10 center-block">
+                        <button id="cerrarCarrito" type="button" class="btn btn-secondary mr-auto" data-dismiss="modal" >CERRAR</button>
+                        <button id="pagar" type="button" class="btn btn-dark" data-dismiss="modal" data-dismiss="modal" data-toggle="modal" data-target="#confirmarCompra"><span class="glyphicon glyphicon-credit-card"> PAGAR</span></button>
                     </div>
                 </div>
             </div>
@@ -159,23 +148,26 @@
                     <input type="text" hidden value="{{id}}">
                     <img src="{{imagen}}" alt="Lights" style="width:50%">
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                             <h4 class="modal-title">{{nombre}}</h4>
                         </div>
-                        <div class="col-md-3">
+                        <div id="precioDetalle" class="col-md-3">
                             <h3><b>${{precio}}</b></h3>
                         </div>
                     </div>
-                    <div>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
+                    <div class="row">
+                        <div id="calificacion" class="col-sm-5 float-left">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
                     </div>
-                    <p>{{descripcion}}</p>
+                    <br>
+                    <p class="text-left">{{descripcion}}</p>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer center-block">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="agregarLibro(libro)"><span class="glyphicon glyphicon-shopping-cart">AGREGAR</span></button>
                 </div>
@@ -185,11 +177,11 @@
 
     <!--Modal de éxito al pagar, lol-->
     <div class="modal fade" id="confirmarCompra">
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog modal-md">
             <div class="modal-content" ng-repeat="libro in Libros.productos" ng-show="libroActual == libro.prod_id">    
 
                 <div class="modal-header">
-                    <h4 class="modal-title">Carrito de compra</h4>
+                    <h2 class="modal-title"><strong>Carrito de compra</strong></h2>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
@@ -203,7 +195,7 @@
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="limpiarCarrito()"><span class="glyphicon glyphicon-shopping-cart">CERRAR</span></button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="limpiarCarrito()">CERRAR</button>
                 </div>
             </div>
         </div>
@@ -211,16 +203,16 @@
 
     <!--Modal del carrito cuando no hay libros encargados-->
     <div class="modal fade" id="carritoVacio">
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">  
                 
                 <div class="modal-header">
-                    <h4 class="modal-title">Carrito de compra</h4>
+                    <h2 class="modal-title"><strong>Carrito de compra</strong></h2>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <div class="modal-body text-center">
-                    <h5>Su carrito de compra está vacío</h5>
+                    <h4>Su carrito de compra está vacío</h4>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
